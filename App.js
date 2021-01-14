@@ -11,7 +11,6 @@ const Stack = createStackNavigator();
 // import de pantallas 
 import catalogo from './screens/catalogo'
 import detalles from './screens/detalles'
-import catalogoFlat from './screens/catalogoFlat'
 
 const App = () => {
   return (
