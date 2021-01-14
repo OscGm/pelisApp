@@ -1,25 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 
-const UrlPopulares = 'http://api.themoviedb.org/3/movie/popular?api_key=02f70a2fb7623e38786e1316db596f10'
 
-const getPopulares = async () => {
+const catalogo = ({navigation}) => {
+    const [resultado, guardarResultado] = useState({});
+
+ useEffect (()=>{
+  const getPopulares = async () => {
+    const UrlPopulares = 'http://api.themoviedb.org/3/movie/popular?api_key=02f70a2fb7623e38786e1316db596f10'
     try {
-      let response = await fetch(UrlPopulares);
-      let json = await response.json();
-      console.log(json.results);
+      const response = await fetch (UrlPopulares);
+      const respuesta = await response.json();
+
+      for (let i =0; i<respuesta.results.length;i++){
+        guardarResultado(respuesta);
+      }
     } catch (error) {
       console.error(error);
     }
   };
-  getPopulares();
-// const enviroment = {
-//     url: 'http://api.themoviedb.org/3',
-//     apiKey: '02f70a2fb7623e38786e1316db596f10',
-//     imgPath: 'http://image.tmdb.org/t/p/w185'
-// }
+ getPopulares();
 
-const catalogo = ({navigation}) => {
+
+ })
     return (
         <>
             <View>

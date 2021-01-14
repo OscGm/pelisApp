@@ -13,6 +13,7 @@ import catalogo from './screens/catalogo'
 import detalles from './screens/detalles'
 
 const App = () => {
+
   return (
     <>
       <NavigationContainer>
