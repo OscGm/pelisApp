@@ -1,39 +1,37 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import {View, Text} from 'react-native';
 
 // import reactNavigation
-import { NavigationContainer, StackActions } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
+import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
 
 
 // import de pantallas 
 import catalogo from './screens/catalogo'
 import detalles from './screens/detalles'
+import catalogoFlat from './screens/catalogoFlat'
 
 const App = () => {
   return (
     <>
       <NavigationContainer>
         
-        <Stack.Navigator 
-        initialRouteName='catalogo'
-        screenOptions = {{
-          headerShown: false
-        }}>
+        <Stack.Navigator
+          initialRouteName="Catalogo"
+        >
           <Stack.Screen
-            name = 'catalogo'
-            component = {catalogo}
+            name="Catalogo"
+            component={catalogo}
           />
           <Stack.Screen
-            name = 'detalles'
-            component = {detalles}
+            name="Detalles"
+            component={detalles}
           />
         </Stack.Navigator>
 
       </NavigationContainer>
-
-    
-    
     </>
   );
 };
