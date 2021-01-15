@@ -9,8 +9,8 @@ const Stack = createStackNavigator();
 
 
 // import de pantallas 
-import catalogo from './screens/catalogo'
-import detalles from './screens/detalles'
+import Catalogo from './screens/catalogo'
+import Detalles from './screens/detalles'
 
 const App = () => {
 
@@ -23,11 +23,11 @@ const App = () => {
         >
           <Stack.Screen
             name="Catalogo"
-            component={catalogo}
+            component={Catalogo}
           />
           <Stack.Screen
             name="Detalles"
-            component={detalles}
+            component={Detalles}
           />
         </Stack.Navigator>
 

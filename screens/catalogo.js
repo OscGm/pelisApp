@@ -1,39 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
-
+//librerias
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, Text, Image, ScrollView, SafeAreaView } from 'react-native';
 
 const catalogo = ({navigation}) => {
-    const [resultado, guardarResultado] = useState({});
 
- useEffect (()=>{
-  const getPopulares = async () => {
-    const UrlPopulares = 'http://api.themoviedb.org/3/movie/popular?api_key=02f70a2fb7623e38786e1316db596f10'
-    try {
-      const response = await fetch (UrlPopulares);
-      const respuesta = await response.json();
-
-      for (let i =0; i<respuesta.results.length;i++){
-        guardarResultado(respuesta);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
- getPopulares();
-
-
- })
+  const URL_API = 'https://api.themoviedb.org/3/movie/popular?api_key=02f70a2fb7623e38786e1316db596f10'
+  const IMAGES_API = 'https://image.tmdb.org/t/p/w185'
+  const [movies, setMovies] = useState([]);
+  
+  useEffect (()=>{
+    fetch(URL_API)
+    .then((res) => res.json())
+    .then((data) => {
+      // Ver datos de la api
+      console.log(data.results);
+      setMovies(data.results);
+    });
+  }, []);
     return (
-        <>
-            <View>
-      <Image
-        style={{width:50, height:50}}
-        source={{
-          uri: 'http://image.tmdb.org/t/p/w185/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg',
-        }}
-      />
-            </View>
-        </>
+      <SafeAreaView style={{flex: 1}}>
+        <ScrollView>
+          {movies.length > 0 && movies.map((movie) => <Image key={movie.id}
+            style={{width:50, height:50}}
+            source={{
+              uri:IMAGES_API+movie.poster_path
+            }}
+          />)}
+        </ScrollView>
+      </SafeAreaView>
     )
 }
 
