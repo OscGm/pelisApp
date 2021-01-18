@@ -24,6 +24,9 @@ const App = () => {
           <Stack.Screen
             name="Catalogo"
             component={Catalogo}
+            options={{
+              title:'AppPeliculas'
+            }}
           />
           <Stack.Screen
             name="Detalles"

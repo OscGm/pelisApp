@@ -3,8 +3,6 @@ import { Image, StyleSheet, View, Text, ScrollView, SafeAreaView} from 'react-na
 
 const IMAGES_API = 'https://image.tmdb.org/t/p/w185'
 const detalles = ( { navigation, route} ) => {
-
-    console.log(route);
     return (
         <SafeAreaView style={{flex: 1,marginLeft:10,marginTop:10}}>
             <ScrollView>
