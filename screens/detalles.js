@@ -10,12 +10,14 @@ const detalles = ( { navigation, route} ) => {
             <ScrollView>
             <View>
                 <Text style={{fontSize:40, alignSelf: 'center', fontWeight:'bold'}}>{route.params.title}</Text>
+                <Text style={{fontSize:15}}>Date: {route.params.release_date}</Text>
             <Image
             style={{width:200, height:300}}
             source={{
               uri:IMAGES_API+route.params.poster_path
             }}
           />
+          <Text>Rating: {route.params.vote_average}/10</Text>
             </View>
             <View>
                 <Text style={{fontSize:25}}>
