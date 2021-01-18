@@ -28,6 +28,9 @@ const App = () => {
           <Stack.Screen
             name="Detalles"
             component={Detalles}
+            options={ ({route}) => ({
+              title: route.params.title
+            })}
           />
         </Stack.Navigator>
 
