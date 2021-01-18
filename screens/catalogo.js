@@ -1,12 +1,18 @@
 //librerias
 import React, { useEffect, useState } from 'react';
+import { Button, TouchableHighlight } from 'react-native';
 import { StyleSheet, View, Text, Image, ScrollView, SafeAreaView } from 'react-native';
+import detalles from './detalles';
 
 const catalogo = ({navigation}) => {
 
   const URL_API_POPULARES = 'https://api.themoviedb.org/3/movie/popular?api_key=02f70a2fb7623e38786e1316db596f10'
   const IMAGES_API = 'https://image.tmdb.org/t/p/w185'
   const [movies, setMovies] = useState([]);
+
+  const detallesMovie = () => {
+    navigation.navigate("Detalles")
+  }
   
   useEffect (()=>{
     fetch(URL_API_POPULARES)
@@ -18,18 +24,18 @@ const catalogo = ({navigation}) => {
     });
   }, []);
     return (
-      <SafeAreaView style={{flex: 1}}>
-        <Text style={{fontSize:40, marginLeft:20}}>Populares</Text>
+      <SafeAreaView>
+        <Text style={{fontSize:40, alignSelf: 'center', fontWeight:'bold'}}>Populares</Text>
       <ScrollView horizontal={true}>
           {movies.length > 0 && movies.map((movie) =>  (
-          <Image resizeMode='center' key={movie.id}
+           <TouchableHighlight key={movie.id} onPress={() => detallesMovie()}> 
+          <Image resizeMode='center'
             style={{width:100, height:100}}
             source={{
               uri:IMAGES_API+movie.poster_path
             }}
-          />))}
-          
-          
+          />
+          </TouchableHighlight>))}
         </ScrollView>
       </SafeAreaView>
     )
