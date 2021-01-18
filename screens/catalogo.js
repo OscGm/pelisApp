@@ -18,18 +18,20 @@ const catalogo = ({navigation}) => {
     });
   }, []);
     return (
-      <>
-      <ScrollView>
-        <Text style={{alignContent:'center'}}>
-          {movies.length > 0 && movies.map((movie) => <Image key={movie.id}
+      <SafeAreaView style={{flex: 1}}>
+        <Text style={{fontSize:40, marginLeft:20}}>Populares</Text>
+      <ScrollView horizontal={true}>
+          {movies.length > 0 && movies.map((movie) =>  (
+          <Image resizeMode='center' key={movie.id}
             style={{width:100, height:100}}
             source={{
               uri:IMAGES_API+movie.poster_path
             }}
-          />)}
-        </Text>
+          />))}
+          
+          
         </ScrollView>
-      </>
+      </SafeAreaView>
     )
 }
 
