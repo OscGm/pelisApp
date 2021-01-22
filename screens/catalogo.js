@@ -1,6 +1,6 @@
 //librerias
 import React, { useEffect, useState } from 'react';
-import { View, TouchableHighlight, Text, Image, ScrollView, SafeAreaView, Button } from 'react-native';
+import { View, Text, Image, ScrollView, SafeAreaView, Button, TouchableHighlight } from 'react-native';
 import detalles from './detalles';
 
 const catalogo = ({navigation}) => {
@@ -13,7 +13,6 @@ const catalogo = ({navigation}) => {
   const [movies, setMovies] = useState([]);
 
   const languageESP = '&language=es';
-  const page = 1;
 
   // Mover entre Pantallas
   const detallesMovie = (id) => {
@@ -22,14 +21,16 @@ const catalogo = ({navigation}) => {
   
   // Obtener resultados de la API
   useEffect (()=>{
-    fetch(URL_API_POPULARES+page+languageESP)
-    .then((res) => res.json())
-    .then((data) => {
-      // Ver datos de la api
-      // console.log(data.results);
-      setMovies(data.results);
-    });
+    const listPeliculas = async (page) => {
+      const res = await fetch(URL_API_POPULARES+page+languageESP);
+      const result = await res.json();
+      setMovies(result.results)
+    }
+    listPeliculas();
   }, []);
+  
+
+
 
     return (
       <SafeAreaView >
